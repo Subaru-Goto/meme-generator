@@ -7,7 +7,7 @@ import {
   Route} from "react-router-dom";
 import Home from "./Home"
 import Layout from "./components/Layout";
-import RandomMeme, {loader as memesLoader} from './View/RandomMeme';
+import RandomMeme, {loader as memesLoader} from './view/RandomMeme';
 import OwnPicture from './view/OwnPicture';
 import './index.css';
 
