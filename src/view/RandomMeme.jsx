@@ -14,10 +14,10 @@ const RandomMeme = () => {
   const [isActive, setIsActive] = useState();
   const memes = useLoaderData();
 
+
   const handleImageClick = (event) => {
-    const imgRect = event.target.getBoundingClientRect();
-    const x = event.clientX - imgRect.left + 300;
-    const y = event.clientY - imgRect.top + 180;
+    const x = (event.clientX);
+    const y = (event.clientY);
     setTextCoordinates(prev => [...prev, { x, y }]);
     setIsActive(true);
   };
@@ -38,7 +38,7 @@ const RandomMeme = () => {
   };
 
   return (
-    <>
+    <div className="flex flex-col items-center">
       <div className="flex justify-center">
         {index !== 0
          ?<Button setIndex={setIndex} count={-1} type={"back"}
@@ -51,12 +51,10 @@ const RandomMeme = () => {
             Next
           </Button>
       </div>
-      <div className="flex justify-center">
+      <div className="flex justify-center w-[600px] h-auto">
         <img src={memes[index].url}
-          with={memes[index].with}
-          height={memes[index].height}
           onClick={handleImageClick}
-          className="object-contain border"/>
+          className="object-contain border w-ull h-full"/>
         {textCoordinates.map((coord, index) => (
           <div 
             key={index}
@@ -83,13 +81,13 @@ const RandomMeme = () => {
               onClick={() => setIsActive(true)}
             />
           </div>
-          
         ))}
       </div>
+
       <div className="flex justify-center">
         <Button>Save Meme</Button>
       </div>
-    </>
+    </div>
   )
 }
 
