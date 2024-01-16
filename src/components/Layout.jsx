@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 
 const Layout = () => {
   return (
-    <div className="max-h-screen">
+    <div className="container">
       <Header />
         <Outlet />
       <Footer />

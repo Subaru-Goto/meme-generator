@@ -51,10 +51,10 @@ const RandomMeme = () => {
             Next
           </Button>
       </div>
-      <div className="flex justify-center w-[600px] h-auto">
+      <div className="flex justify-center w-[700px]">
         <img src={memes[index].url}
           onClick={handleImageClick}
-          className="object-contain border w-ull h-full"/>
+          className="object-contain border w-ull h-full aspect-{4/3}"/>
         {textCoordinates.map((coord, index) => (
           <div 
             key={index}
