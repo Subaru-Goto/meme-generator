@@ -17,7 +17,7 @@ const RandomMeme = () => {
 
   const handleImageClick = (event) => {
     const x = (event.clientX);
-    const y = (event.clientY);
+    const y = (event.clientY + window.scrollY);
     setTextCoordinates(prev => [...prev, { x, y }]);
     setIsActive(true);
   };
@@ -70,7 +70,8 @@ const RandomMeme = () => {
             <input 
               type="text"
               className={`
-                text-4xl
+                sm:text-4xl
+                text-lg
                 bg-transparent
                 w-auto
                 break-words
