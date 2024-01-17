@@ -12,14 +12,5 @@ body{
   padding: 0;
   display: grid;
   min-height: 100vh;
-  display: grid;
   place-content: center;
-
-}
-
-.container{
-  max-width: 1280px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 }

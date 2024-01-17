@@ -1,8 +1,8 @@
 import { useLoaderData } from "react-router-dom"
 import { fetchMeme } from "../api"
 import { useState } from "react";
-import { FaTrash } from 'react-icons/fa';
 import Button from "../components/Button";
+import InputText from "../components/InputText";
 
 export function loader () {
   return fetchMeme();
@@ -20,21 +20,7 @@ const RandomMeme = () => {
     const y = (event.clientY + window.scrollY);
     setTextCoordinates(prev => [...prev, { x, y }]);
     setIsActive(true);
-  };
 
-  const handleDelete = (event, indexToDelete) => {
-    event.preventDefault();
-    event.stopPropagation();
-    setTextCoordinates(prevState => prevState.filter(
-      (_, index) => index !== indexToDelete)
-      );
-  };
-
-  const handleKeyDown = (event) => {
-    if (event.key === 'Enter') {
-      event.preventDefault();
-      event.target.blur();
-    };
   };
 
   return (
@@ -51,38 +37,17 @@ const RandomMeme = () => {
             Next
           </Button>
       </div>
-      <div className="flex justify-center w-[1280px] h-[500px]">
+      <div className="flex justify-center w-[1280px] h-[500px] aspect-[4/3]">
         <img src={memes[index].url}
           onClick={handleImageClick}
-          className="object-contain w-full h-full aspect-auto"/>
-        {textCoordinates.map((coord, index) => (
-          <div 
-            key={index}
-            style={{
-              position: 'absolute',
-              left: `${coord.x}px`,
-              top: `${coord.y}px`}}
-            className="flex"
-          >
-            <div onMouseDown={(event) => event.preventDefault()}>
-              {isActive && <FaTrash onClick={(event) => handleDelete(event, index)} />}
-            </div>
-            <input 
-              type="text"
-              className={`
-                sm:text-4xl
-                text-lg
-                bg-transparent
-                w-auto
-                break-words
-                whitespace-nowrap
-                ${isActive && "border"}`}
-              onKeyDown={handleKeyDown}
-              onBlur={() => setIsActive(false)}
-              onClick={() => setIsActive(true)}
-            />
-          </div>
-        ))}
+          className="object-contain w-full h-full aspect-auto cursor-pointer"/>
+
+        <InputText 
+          isActive={isActive}
+          setIsActive={setIsActive}
+          setTextCoordinates={setTextCoordinates}
+          textCoordinates={textCoordinates} />
+
       </div>
 
       <div className="flex justify-center">
