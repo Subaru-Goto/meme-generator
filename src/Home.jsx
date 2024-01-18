@@ -1,6 +1,9 @@
 import Button from "./components/Button";
+import { useNavigate } from "react-router-dom";
+import { FaArrowAltCircleRight } from "react-icons/fa";
 
 export default function Home() {
+  const navigate = useNavigate();
   return (
     <section className="flex flex-col">
       <div className="mt-12 p-10">
@@ -17,8 +20,14 @@ export default function Home() {
       </p>
       </div>
       <div>
-        <Button path="/random" type="next">Generate random meme</Button>
-        <Button path="/own-picture" type="next">Generate meme from your own picture</Button>
+        <Button onClickFunction={() => navigate("/random")}>
+          Generate random meme
+          <FaArrowAltCircleRight />
+        </Button>
+        <Button onClickFunction={() => navigate("/own-picture")}>
+          Generate meme from your own picture
+          <FaArrowAltCircleRight />
+        </Button>
       </div>
     </section>
   );

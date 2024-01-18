@@ -1,8 +1,10 @@
 import { useLoaderData } from "react-router-dom"
 import { fetchMeme } from "../api"
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Button from "../components/Button";
 import InputText from "../components/InputText";
+import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from "react-icons/fa";
+import { saveImage } from "../utils/domToPNG";
 
 export function loader () {
   return fetchMeme();
@@ -13,31 +15,39 @@ const RandomMeme = () => {
   const [textCoordinates, setTextCoordinates] = useState([]);
   const [isActive, setIsActive] = useState();
   const memes = useLoaderData();
-
+  const memeRef = useRef(null);
 
   const handleImageClick = (event) => {
     const x = (event.clientX);
     const y = (event.clientY + window.scrollY);
     setTextCoordinates(prev => [...prev, { x, y }]);
     setIsActive(true);
-
   };
+
+  const handleClick = (count) => {
+    if (setIndex && count !== null) {
+      setIndex(prevIndex => prevIndex + count);
+      setTextCoordinates([]);}
+    };
 
   return (
     <div className="flex flex-col items-center">
       <div className="flex justify-center">
         {index !== 0
-         ?<Button setIndex={setIndex} count={-1} type={"back"}
-          setTextCoordinates={setTextCoordinates}>
+         ?<Button onClickFunction={() => handleClick(-1)}>
+            <FaArrowAltCircleLeft />
             Back
           </Button>
          :null}
-          <Button setIndex={setIndex} count={1} type={"next"}
-           setTextCoordinates={setTextCoordinates}>
+          <Button onClickFunction={() => handleClick(1)}>
             Next
+            <FaArrowAltCircleRight />
           </Button>
       </div>
-      <div className="flex justify-center w-[1280px] h-[500px] aspect-[4/3]">
+      <div 
+        className="flex justify-center h-[500px] aspect-[4/3]"
+        ref={memeRef}
+      >
         <img src={memes[index].url}
           onClick={handleImageClick}
           className="object-contain w-full h-full aspect-auto cursor-pointer"/>
@@ -47,11 +57,10 @@ const RandomMeme = () => {
           setIsActive={setIsActive}
           setTextCoordinates={setTextCoordinates}
           textCoordinates={textCoordinates} />
-
       </div>
 
       <div className="flex justify-center">
-        <Button>Save Meme</Button>
+        <Button onClickFunction={() => saveImage(memeRef.current)}>Save Meme</Button>
       </div>
     </div>
   )

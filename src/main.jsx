@@ -15,10 +15,10 @@ const router = createBrowserRouter(createRoutesFromElements(
   <Route path="/" element={<Layout />}>
     <Route index element={<Home />} />
     <Route
-     path="/random"
-     element={<RandomMeme />}
-     loader={memesLoader}
-     errorElement={<Error />}/>
+      path="/random"
+      element={<RandomMeme />}
+      loader={memesLoader}
+      errorElement={<Error />}/>
     <Route path="/own-picture" element={<OwnPicture />}/>
   </Route>
 ));
