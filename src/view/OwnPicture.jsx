@@ -82,9 +82,10 @@ const OwnPicture = () => {
             Save Meme
           </Button>
         }
+        
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default OwnPicture

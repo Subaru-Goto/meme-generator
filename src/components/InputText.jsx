@@ -50,7 +50,7 @@ const InputText = ({ isActive, setIsActive,
         </div>
       ))}
     </>
-  )
-}
+  );
+};
 
 export default InputText

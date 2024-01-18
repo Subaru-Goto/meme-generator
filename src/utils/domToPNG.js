@@ -9,5 +9,5 @@ export const saveImage = async (ref) => {
     link.click();
   } catch (error) {
     console.error('Could not save the image!', error);
-  }
+  };
 };

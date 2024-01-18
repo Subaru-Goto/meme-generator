@@ -63,7 +63,7 @@ const RandomMeme = () => {
         <Button onClickFunction={() => saveImage(memeRef.current)}>Save Meme</Button>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default RandomMeme

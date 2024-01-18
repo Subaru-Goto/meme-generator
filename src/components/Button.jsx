@@ -8,7 +8,7 @@ const Button = ({ children, onClickFunction}) => {
     onClick={onClickFunction}>
         { children }
     </button>
-  )
-}
+  );
+};
 
 export default Button

@@ -12,7 +12,7 @@ const Layout = () => {
         <Outlet />
       <Footer />
     </div>
-  )
-}
+  );
+};
 
 export default Layout

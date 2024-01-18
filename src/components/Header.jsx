@@ -16,7 +16,7 @@ const Header = () => {
        className="cursor-pointer text-white"
        >Meme Generator</Link>
     </header>
-  )
-}
+  );
+};
 
 export default Header
