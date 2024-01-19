@@ -5,6 +5,7 @@ import Button from "../components/Button";
 import InputText from "../components/InputText";
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from "react-icons/fa";
 import { saveImage } from "../utils/domToPNG";
+import TextSelection from "../components/TextSelection";
 
 export function loader () {
   return fetchMeme();
@@ -14,6 +15,9 @@ const RandomMeme = () => {
   const [index, setIndex] = useState(0);
   const [textCoordinates, setTextCoordinates] = useState([]);
   const [isActive, setIsActive] = useState();
+  const [color, setColor] = useState("black");
+  const [fontSize, setFontSize] = useState("1")
+
   const memes = useLoaderData();
   const memeRef = useRef(null);
 
@@ -31,7 +35,7 @@ const RandomMeme = () => {
       setIndex(prevIndex => prevIndex + count);
       setTextCoordinates([]);}
     };
-
+  
   return (
     <div className="flex flex-col items-center">
       <div className="flex justify-center">
@@ -46,6 +50,11 @@ const RandomMeme = () => {
             <FaArrowAltCircleRight />
           </Button>
       </div>
+      <div className="mb-5 border p-3">
+        <TextSelection
+        setColor={setColor}
+        setFontSize={setFontSize}/>
+      </div>
       <div 
         className="flex relative justify-center h-[500px] aspect-[4/3]"
         ref={memeRef}
@@ -58,7 +67,9 @@ const RandomMeme = () => {
           isActive={isActive}
           setIsActive={setIsActive}
           setTextCoordinates={setTextCoordinates}
-          textCoordinates={textCoordinates} />
+          textCoordinates={textCoordinates}
+          color={color}
+          fontSize={fontSize} />
       </div>
 
       <div className="flex justify-center">

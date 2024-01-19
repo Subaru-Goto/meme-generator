@@ -2,7 +2,7 @@ import { FaTrash } from "react-icons/fa";
 import { useState } from "react";
 
 const InputText = ({ isActive, setIsActive,
-   setTextCoordinates, textCoordinates }) => {
+   setTextCoordinates, textCoordinates, color, fontSize }) => {
     const [texts, setTexts] = useState([]);
 
   const handleDelete = (event, indexToDelete) => {
@@ -42,26 +42,33 @@ const InputText = ({ isActive, setIsActive,
         >
           {/* Distinguish between mouseDown and click event, and prevent onMouseDown event to happen */}
           <div onMouseDown={(event) => event.preventDefault()}>
-            {isActive && <FaTrash onClick={(event) => handleDelete(event, index)} />}
+            {isActive &&
+             <FaTrash
+              onClick={(event) => handleDelete(event, index)}
+              className={`text-${color}`}
+              />}
           </div>
           { isActive ?         
             <input 
               type="text"
               className={`
-                sm:text-4xl
+                sm:text-${fontSize}
+                text-${color}
                 text-lg
                 bg-transparent
                 w-auto
                 break-words
                 whitespace-nowrap
                 ${isActive && "border"}`}
-              value={texts[index]}
+     p         value={texts[index]}
               onChange={(event) => handleChange(event, index)}
               onKeyDown={handleKeyDown}
               onBlur={() => setIsActive(false)}
               onClick={() => setIsActive(true)}
             />
-            : <span>{texts[index]}</span>
+            : <span className={`text-${color} text-${fontSize}`}>
+                {texts[index]}
+              </span>
           }
         </div>
       ))}

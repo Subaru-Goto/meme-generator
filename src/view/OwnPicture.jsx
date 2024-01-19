@@ -3,12 +3,16 @@ import InputText from "../components/InputText";
 import { FaTrash } from "react-icons/fa";
 import Button from "../components/Button"
 import { saveImage } from "../utils/domToPNG";
+import TextSelection from "../components/TextSelection";
 
 const OwnPicture = () => {
   const [uploadedImage, setUploadedImage] = useState(null);
   const [textCoordinates, setTextCoordinates] = useState([]);
   const [isActive, setIsActive] = useState();
   const [isPictureUploaded, setIsPictureUploaded] = useState(false);
+  const [color, setColor] = useState("black");
+  const [fontSize, setFontSize] = useState("1")
+
   const inputId = useId();
   const inputRef = useRef(null);
   const memeRef = useRef(null);
@@ -35,9 +39,17 @@ const OwnPicture = () => {
   };
 
   return (
-    <div className="
-    flex justify-center flex-col">
-      <div className=" h-[500px] aspect-[4/3]" ref={memeRef}>
+    <div className="justify-center flex-col">  
+    {isPictureUploaded && 
+      <div className="flex justify-center">
+        <div className="my-0 mx-auto mt-3 border inline-block">
+          <TextSelection
+          setColor={setColor}
+          setFontSize={setFontSize}
+          />
+        </div>
+      </div>}
+      <div className="my-0 mx-auto h-[500px] aspect-[4/3]" ref={memeRef}>
         {uploadedImage &&
           <img
             src={uploadedImage}
@@ -52,8 +64,11 @@ const OwnPicture = () => {
           isActive={isActive}
           setIsActive={setIsActive}
           setTextCoordinates={setTextCoordinates}
-          textCoordinates={textCoordinates} />
+          textCoordinates={textCoordinates}
+          color={color}
+          fontSize={fontSize} />
       </div>
+
       <div className="
         flex flex-col justify-center
         items-center p-3">
