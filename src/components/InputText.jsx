@@ -1,5 +1,8 @@
 import { FaTrash } from 'react-icons/fa';
-
+// TO DO: make the input to be controlled
+// BY adding value
+// But how can I pass the information
+// In the DOM, multiple INPUTS are added.
 const InputText = ({ isActive, setIsActive,
    setTextCoordinates, textCoordinates }) => {
 
