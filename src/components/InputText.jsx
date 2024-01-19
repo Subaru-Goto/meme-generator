@@ -1,15 +1,17 @@
-import { FaTrash } from 'react-icons/fa';
-// TO DO: make the input to be controlled
-// BY adding value
-// But how can I pass the information
-// In the DOM, multiple INPUTS are added.
+import { FaTrash } from "react-icons/fa";
+import { useState } from "react";
+
 const InputText = ({ isActive, setIsActive,
    setTextCoordinates, textCoordinates }) => {
+    const [texts, setTexts] = useState([]);
 
   const handleDelete = (event, indexToDelete) => {
-    event.preventDefault();
     event.stopPropagation();
+
     setTextCoordinates(prevState => prevState.filter(
+      (_, index) => index !== indexToDelete)
+      );
+    setTexts(prevTexts => prevTexts.filter(
       (_, index) => index !== indexToDelete)
       );
   };
@@ -19,6 +21,12 @@ const InputText = ({ isActive, setIsActive,
       event.preventDefault();
       event.target.blur();
     };
+  };
+
+  const handleChange = (event, index) => {
+    const newValues = [...texts];
+    newValues[index] = event.target.value;
+    setTexts(newValues);
   };
 
   return (
@@ -36,20 +44,25 @@ const InputText = ({ isActive, setIsActive,
           <div onMouseDown={(event) => event.preventDefault()}>
             {isActive && <FaTrash onClick={(event) => handleDelete(event, index)} />}
           </div>
-          <input 
-            type="text"
-            className={`
-              sm:text-4xl
-              text-lg
-              bg-transparent
-              w-auto
-              break-words
-              whitespace-nowrap
-              ${isActive && "border"}`}
-            onKeyDown={handleKeyDown}
-            onBlur={() => setIsActive(false)}
-            onClick={() => setIsActive(true)}
-          />
+          { isActive ?         
+            <input 
+              type="text"
+              className={`
+                sm:text-4xl
+                text-lg
+                bg-transparent
+                w-auto
+                break-words
+                whitespace-nowrap
+                ${isActive && "border"}`}
+              value={texts[index]}
+              onChange={(event) => handleChange(event, index)}
+              onKeyDown={handleKeyDown}
+              onBlur={() => setIsActive(false)}
+              onClick={() => setIsActive(true)}
+            />
+            : <span>{texts[index]}</span>
+          }
         </div>
       ))}
     </>

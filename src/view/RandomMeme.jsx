@@ -18,8 +18,10 @@ const RandomMeme = () => {
   const memeRef = useRef(null);
 
   const handleImageClick = (event) => {
-    const x = (event.clientX);
-    const y = (event.clientY + window.scrollY);
+    // Get a position of element attached
+    const rect = event.target.getBoundingClientRect();
+    const x = (event.clientX - rect.left);
+    const y = (event.clientY - rect.top);
     setTextCoordinates(prev => [...prev, { x, y }]);
     setIsActive(true);
   };
@@ -45,7 +47,7 @@ const RandomMeme = () => {
           </Button>
       </div>
       <div 
-        className="flex justify-center h-[500px] aspect-[4/3]"
+        className="flex relative justify-center h-[500px] aspect-[4/3]"
         ref={memeRef}
       >
         <img src={memes[index].url}
