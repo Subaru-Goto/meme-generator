@@ -10,6 +10,8 @@ import Layout from "./components/Layout";
 import RandomMeme, {loader as memesLoader} from './view/RandomMeme';
 import OwnPicture from './view/OwnPicture';
 import './index.css';
+import 'tailwindcss/tailwind.css'
+import Error from './components/Error';
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path="/" element={<Layout />}>
@@ -18,6 +20,7 @@ const router = createBrowserRouter(createRoutesFromElements(
       path="/random"
       element={<RandomMeme />}
       loader={memesLoader}
+      // where is import or definition for Error component?
       errorElement={<Error />}/>
     <Route path="/own-picture" element={<OwnPicture />}/>
   </Route>

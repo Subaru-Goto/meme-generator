@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
 
 *{
   box-sizing: border-box;
@@ -10,7 +8,9 @@
 body{  
   margin: 0;
   padding: 0;
-  display: grid;
-  min-height: 100vh;
+  /* why */
+  /* display: grid; */
+  min-height: 100vh; 
+  height: 100%;
   place-content: center;
 }
