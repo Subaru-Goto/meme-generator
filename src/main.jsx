@@ -7,9 +7,11 @@ import {
   Route} from "react-router-dom";
 import Home from "./Home"
 import Layout from "./components/Layout";
-import RandomMeme, {loader as memesLoader} from './view/RandomMeme';
-import OwnPicture from './view/OwnPicture';
-import './index.css';
+import RandomMeme, {loader as memesLoader} from "./view/RandomMeme";
+import OwnPicture from "./view/OwnPicture";
+import Error from "./components/Error";
+import "./index.css";
+import "tailwindcss/tailwind.css";
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path="/" element={<Layout />}>

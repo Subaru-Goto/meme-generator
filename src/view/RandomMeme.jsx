@@ -11,6 +11,13 @@ export function loader () {
   return fetchMeme();
 };
 
+// TO DO:
+// Implement drag drop
+//style font impact
+// custom image
+// back button to go back to home page or add navigation links to navbar
+// remove meme text when removing picture from dom
+
 const RandomMeme = () => {
   const [index, setIndex] = useState(0);
   const [textCoordinates, setTextCoordinates] = useState([]);
@@ -56,7 +63,7 @@ const RandomMeme = () => {
         setFontSize={setFontSize}/>
       </div>
       <div 
-        className="flex relative justify-center h-[500px] aspect-[4/3]"
+        className="flex relative justify-center h-[500px]"
         ref={memeRef}
       >
         <img src={memes[index].url}
